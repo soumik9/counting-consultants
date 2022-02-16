@@ -63,26 +63,26 @@
                                 <div class="expense-main text-center">
                                     <div class="row justify-content-center align-items-center mb-3">
                                         <div class="col-2">
-                                        <label for="income-amount" class="col-form-label">Food:</label>
+                                        <label for="food-expense" class="col-form-label">Food:</label>
                                         </div>
                                         <div class="col-5">
-                                        <input type="text" id="income-amount" class="form-control">
+                                        <input type="text" id="food-expense" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row justify-content-center align-items-center mb-3">
                                         <div class="col-2">
-                                        <label for="income-amount" class="col-form-label">Rent:</label>
+                                        <label for="rent-expense" class="col-form-label">Rent:</label>
                                         </div>
                                         <div class="col-5">
-                                        <input type="text" id="income-amount" class="form-control">
+                                        <input type="text" id="rent-expense" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row justify-content-center align-items-center mb-3">
                                         <div class="col-2">
-                                        <label for="income-amount" class="col-form-label">Cloths:</label>
+                                        <label for="cloth-expense" class="col-form-label">Clothes:</label>
                                         </div>
                                         <div class="col-5">
-                                        <input type="text" id="income-amount" class="form-control">
+                                        <input type="text" id="cloth-expense" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -91,8 +91,8 @@
 
                             <!-- calculation details start -->
                             <button type="button" class="btn btn-primary" id="calculate">Calculate</button>
-                            <h6 class="my-4 fw-bolder">Total Expenses: 5500</h6>
-                            <h6 class="my-4 fw-bolder">Balance: 5500</h6>
+                            <h6 class="my-4 fw-bolder" id="total-expense">Total Expenses: 5500</h6>
+                            <h6 class="my-4 fw-bolder" id="balance">Balance: 5500</h6>
                             <!-- calculation details end -->
                         </div>
                         <!-- income-expense end -->
@@ -101,19 +101,19 @@
                          <div class="saving-section mt-4">
                             <div class="row justify-content-center align-items-center">
                                 <div class="col-2 col-md-1 col-xl-1">
-                                  <label for="income-amount" class="col-form-label">Save:</label>
+                                  <label for="saving-amount-percent" class="col-form-label">Save:</label>
                                 </div>
                                 <div class="col-4 d-flex align-items-center">
-                                  <input type="text" id="income-amount" class="form-control me-3">
+                                  <input type="text" id="saving-amount-percent" class="form-control me-3">
                                   <span>%</span>
                                 </div>
                                 <div class="col-2">
-                                    <button type="button" class="btn btn-primary w-md-100">Save</button>
+                                    <button type="button" class="btn btn-primary w-md-100" id="save">Save</button>
                                 </div>
                             </div>
 
-                            <h6 class="my-4 fw-bolder">Saving Amount: 5500</h6>
-                            <h6 class="fw-bolder">Remaining Balance: 5500</h6>
+                            <h6 class="my-4 fw-bolder" id="total-saving">Saving Amount: 5500</h6>
+                            <h6 class="fw-bolder" id="total-remaining-amount">Remaining Balance: 5500</h6>
                          </div>
                          <!-- savings end -->
                     </div>
