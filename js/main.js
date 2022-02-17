@@ -73,40 +73,45 @@ document.getElementById('save').addEventListener('click', function(){
     const clothExpenseValue = getInputValue('cloth-expense');
     const savingAmountPercentValue = getInputValue('saving-amount-percent');
 
-    if(savingAmountPercentValue == ''){
-        document.getElementById('err-saving-msg').style.display = 'block';
-        document.getElementById('err-saving-msg').innerText = 'Please input saving percent';
-    }else if(incomeValue == '' || foodExpenseValue == '' || rentExpenseValue == ''|| clothExpenseValue == ''){
-        document.getElementById('err-saving-msg').style.display = 'block';
-        document.getElementById('err-saving-msg').innerText = 'Please input all income and expense';
-    }else{
-        // hide error msg
-        document.getElementById('err-saving-msg').style.display = 'none';
+    // error check for number and positive number
+    const theValue = checkErrors(savingAmountPercentValue, 'err-saving-msg');
 
-        // convert to parseFloat
-        const getIncomeValue = parseFloat(incomeValue);;
-        const getFoodExpenseValue = parseFloat(foodExpenseValue);
-        const getRentExpenseValue = parseFloat(rentExpenseValue);
-        const getClothExpenseValue = parseFloat(clothExpenseValue);
-        const getSavingAmountPercentValue = parseFloat(savingAmountPercentValue);
-
-        // total calculation
-        const totalExpense = getFoodExpenseValue + getRentExpenseValue + getClothExpenseValue;
-        const balance = getIncomeValue - totalExpense;
-        const savingAmountTotal = ((getIncomeValue * getSavingAmountPercentValue) / 100) ;
-        const remainingBalance = balance - savingAmountTotal;
-
-        // checking is saving amount higher than balance
-        if(savingAmountTotal > balance){
+    if(theValue == undefined){
+        if(savingAmountPercentValue == ''){
             document.getElementById('err-saving-msg').style.display = 'block';
-            document.getElementById('err-saving-msg').innerText = 'Income is not enough to save';
-            document.getElementById('total-remaining-amount').style.color = 'red';
+            document.getElementById('err-saving-msg').innerText = 'Please input saving percent';
+        }else if(incomeValue == '' || foodExpenseValue == '' || rentExpenseValue == ''|| clothExpenseValue == ''){
+            document.getElementById('err-saving-msg').style.display = 'block';
+            document.getElementById('err-saving-msg').innerText = 'Please input all income and expense';
         }else{
-            document.getElementById('err-saving-msg').style.display = 'block';
-            document.getElementById('total-remaining-amount').style.color = 'green';
-        }
+            // hide error msg
+            document.getElementById('err-saving-msg').style.display = 'none';
 
-        document.getElementById('total-saving').innerText = savingAmountTotal;
-        document.getElementById('total-remaining-amount').innerText = remainingBalance;
+            // convert to parseFloat
+            const getIncomeValue = parseFloat(incomeValue);;
+            const getFoodExpenseValue = parseFloat(foodExpenseValue);
+            const getRentExpenseValue = parseFloat(rentExpenseValue);
+            const getClothExpenseValue = parseFloat(clothExpenseValue);
+            const getSavingAmountPercentValue = parseFloat(savingAmountPercentValue);
+
+            // total calculation
+            const totalExpense = getFoodExpenseValue + getRentExpenseValue + getClothExpenseValue;
+            const balance = getIncomeValue - totalExpense;
+            const savingAmountTotal = ((getIncomeValue * getSavingAmountPercentValue) / 100) ;
+            const remainingBalance = balance - savingAmountTotal;
+
+            // checking is saving amount higher than balance
+            if(savingAmountTotal > balance){
+                document.getElementById('err-saving-msg').style.display = 'block';
+                document.getElementById('err-saving-msg').innerText = 'Income is not enough to save';
+                document.getElementById('total-remaining-amount').style.color = 'red';
+            }else{
+                document.getElementById('err-saving-msg').style.display = 'block';
+                document.getElementById('total-remaining-amount').style.color = 'green';
+            }
+
+            document.getElementById('total-saving').innerText = savingAmountTotal;
+            document.getElementById('total-remaining-amount').innerText = remainingBalance;
+        }
     }
 });
