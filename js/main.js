@@ -55,12 +55,11 @@ document.getElementById('calculate').addEventListener('click', function(){
             document.getElementById('err-in-ex-msg').innerText = 'Expense should be less than income';
             document.getElementById('balance').style.color = 'red';
         }else{
-            document.getElementById('err-in-ex-msg').style.display = 'block';
+            document.getElementById('err-in-ex-msg').style.display = 'none';
             document.getElementById('balance').style.color = 'green';
+            document.getElementById('total-expense').innerText = totalExpense;
+            document.getElementById('balance').innerText = balance;
         }
-
-        document.getElementById('total-expense').innerText = totalExpense;
-        document.getElementById('balance').innerText = balance;
     }
 });
 
@@ -106,12 +105,11 @@ document.getElementById('save').addEventListener('click', function(){
                 document.getElementById('err-saving-msg').innerText = 'Income is not enough to save';
                 document.getElementById('total-remaining-amount').style.color = 'red';
             }else{
-                document.getElementById('err-saving-msg').style.display = 'block';
+                document.getElementById('err-saving-msg').style.display = 'none';
                 document.getElementById('total-remaining-amount').style.color = 'green';
+                document.getElementById('total-saving').innerText = savingAmountTotal;
+                document.getElementById('total-remaining-amount').innerText = remainingBalance;
             }
-
-            document.getElementById('total-saving').innerText = savingAmountTotal;
-            document.getElementById('total-remaining-amount').innerText = remainingBalance;
         }
     }
 });
