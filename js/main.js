@@ -36,6 +36,9 @@ document.getElementById('calculate').addEventListener('click', function(){
         document.getElementById('err-in-ex-msg').style.display = 'block';
         document.getElementById('err-in-ex-msg').innerText = 'Please input all income and expense';
     }else{
+        // hideing error msg
+        document.getElementById('err-in-ex-msg').style.display = 'none';
+
         // convert to parseFloat
         const getIncomeValue = parseFloat(incomeValue);;
         const getFoodExpenseValue = parseFloat(foodExpenseValue);
@@ -48,13 +51,14 @@ document.getElementById('calculate').addEventListener('click', function(){
 
         // checking is expense higher than income
         if(totalExpense > getIncomeValue){
+            document.getElementById('err-in-ex-msg').style.display = 'block';
             document.getElementById('err-in-ex-msg').innerText = 'Expense should be less than income';
             document.getElementById('balance').style.color = 'red';
         }else{
+            document.getElementById('err-in-ex-msg').style.display = 'block';
             document.getElementById('balance').style.color = 'green';
         }
 
-        document.getElementById('err-in-ex-msg').style.display = 'none';
         document.getElementById('total-expense').innerText = totalExpense;
         document.getElementById('balance').innerText = balance;
     }
@@ -76,6 +80,9 @@ document.getElementById('save').addEventListener('click', function(){
         document.getElementById('err-saving-msg').style.display = 'block';
         document.getElementById('err-saving-msg').innerText = 'Please input all income and expense';
     }else{
+        // hide error msg
+        document.getElementById('err-saving-msg').style.display = 'none';
+
         // convert to parseFloat
         const getIncomeValue = parseFloat(incomeValue);;
         const getFoodExpenseValue = parseFloat(foodExpenseValue);
@@ -91,13 +98,14 @@ document.getElementById('save').addEventListener('click', function(){
 
         // checking is saving amount higher than balance
         if(savingAmountTotal > balance){
+            document.getElementById('err-saving-msg').style.display = 'block';
             document.getElementById('err-saving-msg').innerText = 'Income is not enough to save';
             document.getElementById('total-remaining-amount').style.color = 'red';
         }else{
+            document.getElementById('err-saving-msg').style.display = 'block';
             document.getElementById('total-remaining-amount').style.color = 'green';
         }
 
-        document.getElementById('err-saving-msg').style.display = 'none';
         document.getElementById('total-saving').innerText = savingAmountTotal;
         document.getElementById('total-remaining-amount').innerText = remainingBalance;
     }
