@@ -7,11 +7,15 @@ function getInputValue(inputId, errId){
 
 function checkErrors(mainValue, errId){
     if(isNaN(mainValue)){
+        document.getElementById(errId).style.display = 'block';
         const numberErr = document.getElementById(errId).innerText = 'Please input only numbers ';
         return numberErr;
     }else if(mainValue < 0){
+        document.getElementById(errId).style.display = 'block';
         const positiveErr = document.getElementById(errId).innerText = 'Numbers should be positive';
         return positiveErr;
+    }else{
+        document.getElementById(errId).style.display = 'none';
     }
 }
 
@@ -29,21 +33,72 @@ document.getElementById('calculate').addEventListener('click', function(){
     checkErrors(clothExpenseValue, 'err-cloth-msg');
 
     if(incomeValue == '' || foodExpenseValue == '' || rentExpenseValue == ''|| clothExpenseValue == ''){
+        document.getElementById('err-in-ex-msg').style.display = 'block';
         document.getElementById('err-in-ex-msg').innerText = 'Please input all income and expense';
     }else{
         // convert to parseFloat
-        const getIncomeValue = parseFloat(incomeValue);
+        const getIncomeValue = parseFloat(incomeValue);;
         const getFoodExpenseValue = parseFloat(foodExpenseValue);
         const getRentExpenseValue = parseFloat(rentExpenseValue);
         const getClothExpenseValue = parseFloat(clothExpenseValue);
 
+        // total calculation
         const totalExpense = getFoodExpenseValue + getRentExpenseValue + getClothExpenseValue;
         const balance = getIncomeValue - totalExpense;
+
+        // checking is expense higher than income
+        if(totalExpense > getIncomeValue){
+            document.getElementById('err-in-ex-msg').innerText = 'Expense should be less than income';
+            document.getElementById('balance').style.color = 'red';
+        }else{
+            document.getElementById('balance').style.color = 'green';
+        }
+
+        document.getElementById('err-in-ex-msg').style.display = 'none';
         document.getElementById('total-expense').innerText = totalExpense;
         document.getElementById('balance').innerText = balance;
     }
+});
 
+//saving amount calculation
+document.getElementById('save').addEventListener('click', function(){
+    // getting input values
+    const incomeValue = getInputValue('income-amount');
+    const foodExpenseValue = getInputValue('food-expense');
+    const rentExpenseValue = getInputValue('rent-expense');
+    const clothExpenseValue = getInputValue('cloth-expense');
+    const savingAmountPercentValue = getInputValue('saving-amount-percent');
 
+    if(savingAmountPercentValue == ''){
+        document.getElementById('err-saving-msg').style.display = 'block';
+        document.getElementById('err-saving-msg').innerText = 'Please input saving percent';
+    }else if(incomeValue == '' || foodExpenseValue == '' || rentExpenseValue == ''|| clothExpenseValue == ''){
+        document.getElementById('err-saving-msg').style.display = 'block';
+        document.getElementById('err-saving-msg').innerText = 'Please input all income and expense';
+    }else{
+        // convert to parseFloat
+        const getIncomeValue = parseFloat(incomeValue);;
+        const getFoodExpenseValue = parseFloat(foodExpenseValue);
+        const getRentExpenseValue = parseFloat(rentExpenseValue);
+        const getClothExpenseValue = parseFloat(clothExpenseValue);
+        const getSavingAmountPercentValue = parseFloat(savingAmountPercentValue);
 
-   
-})
+        // total calculation
+        const totalExpense = getFoodExpenseValue + getRentExpenseValue + getClothExpenseValue;
+        const balance = getIncomeValue - totalExpense;
+        const savingAmountTotal = ((getIncomeValue * getSavingAmountPercentValue) / 100) ;
+        const remainingBalance = balance - savingAmountTotal;
+
+        // checking is saving amount higher than balance
+        if(savingAmountTotal > balance){
+            document.getElementById('err-saving-msg').innerText = 'Income is not enough to save';
+            document.getElementById('total-remaining-amount').style.color = 'red';
+        }else{
+            document.getElementById('total-remaining-amount').style.color = 'green';
+        }
+
+        document.getElementById('err-saving-msg').style.display = 'none';
+        document.getElementById('total-saving').innerText = savingAmountTotal;
+        document.getElementById('total-remaining-amount').innerText = remainingBalance;
+    }
+});
